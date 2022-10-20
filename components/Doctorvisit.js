@@ -19,7 +19,7 @@ function Doctorvisit() {
                         <p className='bg-color1'>HiGHLY RATED </p>
                     </div>
                 </div>
-                <p className='border-b pb-4'>"He worked with us as we had connectivity issues originally; looked at the information"</p>
+                <p className='border-b pb-4'>&quot;He worked with us as we had connectivity issues originally; looked at the information&quot;</p>
                 <p>Thu, Oct 20</p>
             
                 <div>
@@ -44,7 +44,7 @@ function Doctorvisit() {
                         <p className='bg-color1'>HiGHLY RATED </p>
                     </div>
                 </div>
-                <p className='border-b pb-4'>"He worked with us as we had connectivity issues originally; looked at the information"</p>
+                <p className='border-b pb-4'>&quot;He worked with us as we had connectivity issues originally; looked at the information&quot;</p>
                 <p>Thu, Oct 20</p>
             
                 <div>
@@ -69,7 +69,7 @@ function Doctorvisit() {
                         <p className='bg-color1'>HiGHLY RATED </p>
                     </div>
                 </div>
-                <p className='border-b pb-4'>"He worked with us as we had connectivity issues originally; looked at the information"</p>
+                <p className='border-b pb-4'>&quot;He worked with us as we had connectivity issues originally; looked at the information&quot;</p>
                 <p>Thu, Oct 20</p>
             
                 <div>
@@ -94,7 +94,7 @@ function Doctorvisit() {
                         <p className='bg-color1'>HiGHLY RATED </p>
                     </div>
                 </div>
-                <p className='border-b pb-4'>"He worked with us as we had connectivity issues originally; looked at the information"</p>
+                <p className='border-b pb-4'>&quot;He worked with us as we had connectivity issues originally; looked at the information&quot;</p>
                 <p>Thu, Oct 20</p>
             
                 <div>

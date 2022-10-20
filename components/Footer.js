@@ -17,8 +17,8 @@ function Footer() {
               <p>Urgent Care </p>
               <p>Prescription Refills</p>
               <p>Mental Health</p>
-              <p>Men's Health</p>
-              <p>Women's Health</p>
+              <p>Men&apos;s Health</p>
+              <p>Women&apos;s Health</p>
           </div>
           
           <div className="space-y-4 text-lg text-white">
