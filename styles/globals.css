@@ -6,4 +6,8 @@
     .button {
         @apply px-16 py-4 text-lg bg-gradient-to-b text-color1 bg-indigo-500 font-extrabold;
     }
+    .small-button {
+        @apply py-1 px-2 bg-gradient-to-b text-color1 bg-indigo-500 font-extrabold;
+    }
 }
+

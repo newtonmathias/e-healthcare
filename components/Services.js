@@ -43,7 +43,7 @@ function Services() {
 
             <div className='relative flex flex-col m-5 z-10 p-4 bg-color1 h-44'>
                 <FaceFrownIcon className=' absolute top-2 left-2 h-5' />
-                <h2 className='m-auto font-extrabold'>Mental Health</h2>
+                <h2 className='m-auto font-extrabold'>Therapy Session</h2>
                 <ArrowRightIcon className='absolute bottom-2 left-2 h-5' />
             </div>
 

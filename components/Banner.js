@@ -5,16 +5,16 @@ function Banner() {
     <div className='bg-color1 flex h-[200px] sm:h-[300px] lg:h-[400px] xl:h-[500px] 2xl:h-[500px]'>
       {/*right side */}
       <div className='basis-1/2 m-auto'>
-        <div className='space-y-6 bg-white p-10 w-[600px] m-auto -mr-10'>
-          <p className='text-3xl font-bold'>Doctor appointments</p>
-          <p className='text-indigo-500 text-3xl font-bold'>as low as $19</p>
-          <p>
-            Find the best price for the highest quality physicians. Book an appointment in minutes.
+        <div className='bg-white p-10 w-[600px] m-auto -mr-10'>
+          <p className='text-5xl font-bold'>Not just a doctor</p>
+          <p className='text-indigo-500 text-5xl font-bold'>your doctor</p>
+          <p className='py-4'>
+            Find the best price for the highest quality physicians. Get connected to a doctor in minutes.
           </p>
           <button className='button'>
             Get started
           </button>
-          <p>Named Best Overall Telehealth byHealthline</p>
+          <p className='py-4'>Named Best Overall Telehealth by MOH</p>
         </div>
         
       </div>
