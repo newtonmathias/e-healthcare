@@ -1,14 +1,16 @@
+import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
 import Banner from '../components/Banner'
-import Doctor from '../components/Doctor'
+import DoctorCard from '../components/DoctorCard'
 import Doctorvisit from '../components/Doctorvisit'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Services from '../components/Services'
+import TeleFeed from '../components/TeleFeed'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({ doctorsList }) {
   return (
     <div>
       <Head>
@@ -19,9 +21,18 @@ export default function Home() {
       <Header />
       <Banner />
       <Services />
-      <Doctor />
+      <TeleFeed doctorsList={doctorsList}/>
       <Doctorvisit />
       <Footer />
     </div>
   )
 }
+
+export const getServerSideProps = async () => {
+  const res = await axios.get("http://localhost:3000/api/doctors");
+  return {
+    props: {
+      doctorsList: res.data,
+    },
+  };
+};
