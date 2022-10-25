@@ -23,7 +23,7 @@ function DoctorCard({ doctor }) {
             
                 <div>
                     {doctor.times.map((time) =>(
-                        <button className='small-button key={doctor._id}'>{ time }</button>
+                        <button className='small-button' key={doctor._id}>{ time }</button>
                     ))}
                     <button>More times</button>
                 </div>
