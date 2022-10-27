@@ -6,7 +6,7 @@ import {
 
 function Header() {
   return (
-    <div className="flex p-4">
+    <div className="sticky bg-white shadow-md top-0 z-50 flex p-4">
         {/*left Nav*/}
         <div className="flex m-2 items-center flex-grow space-x-5">
             <p className="p-1 text-indigo-500 text-3xl font-bold">MyHealth</p> 

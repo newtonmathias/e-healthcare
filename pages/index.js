@@ -8,7 +8,6 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Services from '../components/Services'
 import TeleFeed from '../components/TeleFeed'
-import styles from '../styles/Home.module.css'
 
 export default function Home({ doctorsList }) {
   return (
@@ -29,7 +28,7 @@ export default function Home({ doctorsList }) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await axios.get("http://e-healthcare-ivory.vercel.app/api/doctors");
+  const res = await axios.get("http://localhost:3000/api/doctors");
   return {
     props: {
       doctorsList: res.data,
