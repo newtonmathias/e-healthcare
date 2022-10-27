@@ -29,7 +29,7 @@ export default function Home({ doctorsList }) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await axios.get("http://localhost:3000/api/doctors");
+  const res = await axios.get("http://e-healthcare-ivory.vercel.app");
   return {
     props: {
       doctorsList: res.data,
