@@ -27,10 +27,8 @@ export default function Home({ doctorsList }) {
 }
 
 export const getServerSideProps = async () => {
-  let dev = process.env.NODE_ENV !== 'production';
-  let { DEV_URL, PROD_URL } = process.env;
 
-  const res = await axios.get(`${dev ? DEV_URL : PROD_URL}/api/doctors`);
+  const res = await axios.get("https://ehealthcare-murex.vercel.app/api/doctors");
   return {
     props: {
       doctorsList: res.data,
