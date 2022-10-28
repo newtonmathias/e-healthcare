@@ -10,8 +10,7 @@ import Services from '../components/Services'
 import TeleFeed from '../components/TeleFeed'
 
 export default function Home({ doctorsList }) {
-
-
+  
   return (
     <div>
       <Head>
@@ -31,12 +30,9 @@ export default function Home({ doctorsList }) {
 
 export const getServerSideProps = async () => {
   let dev = process.env.NODE_ENV !== 'production';
-    let { DEV_URL, PROD_URL } = process.env;
+  let { DEV_URL, PROD_URL } = process.env;
 
-    // request posts from api
-    let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/doctors`);
-    // extract the data
-    let data = await response.json();
+  const res = await axios.get(`${dev ? DEV_URL : PROD_URL}/api/doctors`);
   return {
     props: {
       doctorsList: res.data,
