@@ -15,7 +15,7 @@ function Doctor() {
 const starArray = [...Array(5).keys()].map(i => i + 1);
 const Rating = () =>
   starArray.map(i => ( // use many times
-    <StarIcon className='h-4 text-orange-400'/>
+    <StarIcon className='h-4 text-orange-400' key={Math.random()}/>
   ));
   return (
     <div className='bg-gray-100'>
