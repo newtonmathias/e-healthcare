@@ -31,7 +31,7 @@ const Rating = () =>
                         {Rating(doctor.rating)}
                     </div>
                     <p className='pl-2 font-serif'>
-                        {doctor.specilities.length ? doctor.specilities.map((specility) =>(<span> {specility} </span>)) : ','}
+                        {doctor.specilities.length ? doctor.specilities.map((specility) =>(<span key={Math.random()}> {specility} </span>)) : ','}
                     </p>
                 </div>
                 <div className='bg-color1 inline-flex my-3'>
@@ -89,7 +89,7 @@ const Rating = () =>
                         <div>
                             <h4 className='font-semibold text-lg'>Specialities</h4>
                             <p className='font-serif font-thin'>
-                                {doctor.specilities.length ? doctor.specilities.map((specility) =>(<span> {specility} </span>)) : ','}
+                                {doctor.specilities.length ? doctor.specilities.map((specility) =>(<span key={Math.random()}> {specility} </span>)) : ','}
                             </p>
                         </div>
                         <div>
@@ -103,7 +103,7 @@ const Rating = () =>
                         <div>
                             <h4 className='font-semibold text-lg'>Languages spoken</h4>
                             <p className='font-serif font-thin'>
-                                {doctor.languanges.length ? doctor.languanges.map((language) =>(<span> {language} </span>)) : ','}
+                                {doctor.languanges.length ? doctor.languanges.map((language) =>(<span key={Math.random()}> {language} </span>)) : ','}
                             </p>
                         </div>
                         <div>
@@ -129,7 +129,7 @@ const Rating = () =>
                         </div>
                     </div>
                     {doctor.reviews.map((review) =>(
-                        <div className='my-5 border-b'>
+                        <div className='my-5 border-b' key={Math.random()}>
                         <div className="flex justify-between">
                             <div className='text-green-800 font-bold inline-flex my-3'>
                                 <HandThumbUpIcon className='h-3 my-auto px-1'/>
