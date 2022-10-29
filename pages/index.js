@@ -20,7 +20,7 @@ export default function Home({ doctorsList }) {
       <Banner />
       <Services />
       <TeleFeed doctorsList={doctorsList}/>
-      <Doctorvisit />
+      <Doctorvisit doctorsList={doctorsList}/>
       <Footer />
     </div>
   )

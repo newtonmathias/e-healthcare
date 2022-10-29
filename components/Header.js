@@ -4,16 +4,15 @@ import {
     UserIcon
  } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import React from 'react'
 
 function Header() {
-    const { router } = useRouter();
-
-
-  return (
+    const router = useRouter();
+ return (
     <div className="sticky bg-white shadow-md top-0 z-50 flex p-4">
         {/*left Nav*/}
         <div className="flex m-2 items-center flex-grow space-x-5">
-            <p className="p-1 text-indigo-500 text-3xl font-bold cursor-pointer" onClick={ () => router.push('/doctor')}>MyHealth</p> 
+            <p onClick={ () => router.push('/')} className="p-1 text-indigo-500 text-3xl font-bold cursor-pointer">MyHealth</p> 
             <p className="p-1 font-bold">Patients</p>
             <p className="p-1 font-bold">Providers</p>
         </div>

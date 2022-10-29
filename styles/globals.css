@@ -7,10 +7,11 @@
         @apply px-16 py-4 text-lg bg-gradient-to-b text-color1 bg-indigo-500 font-extrabold;
     }
     .small-button {
-        @apply py-1 px-2 bg-gradient-to-b text-color1 bg-indigo-500 font-extrabold;
+        @apply w-20 h-9 text-sm bg-gradient-to-b text-color1 bg-indigo-500 font-extrabold;
     }
     .time-button {
         @apply py-1 px-2 bg-gradient-to-b  bg-indigo-100 font-extrabold m-2 text-center;
     }
 }
+
 

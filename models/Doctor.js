@@ -7,22 +7,25 @@ const DoctorSchema = new mongoose.Schema (
             required: true,
             maxlength: 40,
         },
-        type: {
-            type: String,
+        specilities: {
+            type: [String],
             required: true,
-            maxlength: 40,
         },
         img: {
             type: String,
             required: true,
         },
+        price: {
+            type: Number,
+            required: true,
+        },
         desc: {
             type: String,
             required: true,
-            maxlength: 200,
+            maxlength: 500,
         },
-        availabilty: {
-            type: String,
+        availability: {
+            type: Boolean,
             required: true,
             maxlength: 40,
         },
@@ -31,6 +34,26 @@ const DoctorSchema = new mongoose.Schema (
             required: true,
         },
         times: {
+            type: [String],
+            required: true,
+        },
+        gender: {
+            type: String,
+            required: true,
+        },
+        service: {
+            type: String,
+            required: true,
+        },
+        institution: {
+            type: String,
+            required: true,
+        },
+        languanges: {
+            type: [String],
+            required: true,
+        },
+        reviews: {
             type: [String],
             required: true,
         },
