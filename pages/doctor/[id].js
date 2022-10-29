@@ -170,7 +170,7 @@ export const getServerSideProps = async ({params}) => {
     let dev = process.env.NODE_ENV !== 'production';
     let { DEV_URL, PROD_URL } = process.env;
 
-    const res = await axios.get(`${dev ? DEV_URL : PROD_URL}/api/doctors/${params.id}`);
+    const res = await axios.get(`https://ehealthcare-murex.vercel.app/api/doctors/${params.id}`);
     return {
       props: {
         doctor: res.data,
