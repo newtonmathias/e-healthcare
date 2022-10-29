@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { format } from 'date-fns'
 import { StarIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
 function DoctorCard({ doctor }) {
@@ -38,7 +39,9 @@ function DoctorCard({ doctor }) {
                     {doctor.times.slice(0, 5).map((time) =>(
                         <button className='small-button m-1'key={Math.random()}>{ time }</button>
                     ))}
-                    <button className='m-1 w-20 h-9 text-indigo-500 font-bold bg-indigo-100 text-sm' onClick={ () => router.push('/doctor')}>More times</button>
+                    <Link href={`/doctor/${doctor._id}`} passHref>
+                        <button className='m-1 w-20 h-9 text-indigo-500 font-bold bg-indigo-100 text-sm'>More times</button>
+                    </Link>
                 </div>
             </div>
             
