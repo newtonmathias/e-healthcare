@@ -75,7 +75,7 @@ export default function Login() {
                             {loading ? <ButtonLoader /> : 'LOGIN'}
                         </button>
                         <div>
-                            <p>Don't have an account? <span className='text-indigo-800 hover:text-indigo-500 transition duration-300 font-bold font-serif cursor-pointer sm:text-sm'>Create account</span></p>
+                            <p>Don&apos;t have an account? <span className='text-indigo-800 hover:text-indigo-500 transition duration-300 font-bold font-serif cursor-pointer sm:text-sm'>Create account</span></p>
                         </div>                        
                     </form>
                 </div>
