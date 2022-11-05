@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 
 import { toast } from 'react-toastify'
 import ButtonLoader from '../components/ButtonLoader';
@@ -12,7 +12,6 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -75,11 +74,30 @@ export default function Login() {
                             {loading ? <ButtonLoader /> : 'LOGIN'}
                         </button>
                         <div>
-                            <p>Don&apos;t have an account? <span className='text-indigo-800 hover:text-indigo-500 transition duration-300 font-bold font-serif cursor-pointer sm:text-sm'>Create account</span></p>
+                            <p>Don&apos;t have an account? <Link href='./register'><span className='text-indigo-800 hover:text-indigo-500 transition duration-300 font-bold font-serif cursor-pointer sm:text-sm'>Create account</span></Link></p>
                         </div>                        
                     </form>
                 </div>
             </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+
+    const session = await getSession({ req: context.req })
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: {}
+    }
+
 }

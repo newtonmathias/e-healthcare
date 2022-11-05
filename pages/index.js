@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useSession } from 'next-auth/react'
 import Head from 'next/head'
 import Banner from '../components/Banner'
 import Doctorvisit from '../components/Doctorvisit'
@@ -8,7 +9,7 @@ import Services from '../components/Services'
 import TeleFeed from '../components/TeleFeed'
 
 export default function Home({ doctorsList }) {
-  
+
   return (
     <div>
       <Head>

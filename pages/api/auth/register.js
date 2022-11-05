@@ -18,7 +18,6 @@ export default async function handler(req, res) {
     })
 
     const { method } = req;
-    console.log('api_secret');
 
     await dbConnect();
 

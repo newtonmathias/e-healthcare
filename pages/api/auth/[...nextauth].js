@@ -1,8 +1,8 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
-import User from '../../../models/User';
-import dbConnect from '../../../utils/mongo';
 
+import User from '../../../models/user'
+import dbConnect from "../../../utils/mongo";
 
 export default NextAuth({
     session: {
@@ -11,9 +11,12 @@ export default NextAuth({
     providers: [
         CredentialsProvider({
             async authorize(credentials) {
+
                 dbConnect();
 
-                const {email, password} = credentials;
+                const { email, password } = credentials;
+
+                // Check if email and password is entered
                 if (!email || !password) {
                     throw new Error('Please enter email or password');
                 }
@@ -31,21 +34,20 @@ export default NextAuth({
                 if (!isPasswordMatched) {
                     throw new Error('Invalid Email or Password')
                 }
+
                 return Promise.resolve(user)
-            },
+
+            }
         })
     ],
     callbacks: {
-        jwt: async (token, user) => {
-
-            user && (token.user = user)
-            return Promise.resolve(token)
+        jwt: async ({ token, user }) => {
+          user && (token.user = user);
+          return token;
         },
-        session: async (session, user) => {
-
-            session.user = user.user
-            return Promise.resolve(session)
-        }
-    }
+        session: async ({ session, token }) => {
+          session.user = token.user;  // Setting token in session
+          return session;
+        },
+      }
 })
-
