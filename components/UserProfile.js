@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, updateProfile } from '../redux/actions/userActions';
 import { UPDATE_PROFILE_RESET } from '../redux/constants/userConstants';
 import ButtonLoader from './ButtonLoader';
+import Loader from '../components/Loader'
 
 
 function UserProfile() {
