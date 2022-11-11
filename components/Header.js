@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from "../redux/actions/userActions";
-import { signOut } from "next-auth/react"
+import { signOut } from "next-auth/react";
 
 
 function Header() {
@@ -18,7 +18,8 @@ function Header() {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     const dispatch = useDispatch()
 
-    const { user, loading } = useSelector(state => state.auth)
+    const { user, loading } = useSelector(state => state.loadedUser)
+    const { doctors } = useSelector(state => state.allDoctors);
 
     useEffect(() => {
         dispatch(loadUser())
@@ -61,7 +62,7 @@ function Header() {
                                 <span onClick={logoutHandler}>Logout</span>
                             </div>
                              
-                             ) : 
+                             ) : !loading &&
                              <Link href='/login' className="">
                                 <div className="flex"><p><UserIcon className="h-7 p-1 "/></p><p className="mr-2">Login</p></div>
                              </Link>

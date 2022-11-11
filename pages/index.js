@@ -7,9 +7,11 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Services from '../components/Services'
 import TeleFeed from '../components/TeleFeed'
+import { getDoctors } from '../redux/actions/allDoctorsActions'
+import { wrapper } from '../redux/store'
 
-export default function Home({ doctorsList }) {
 
+export default function Home() {
   return (
     <div>
       <Head>
@@ -20,19 +22,15 @@ export default function Home({ doctorsList }) {
       <Header />
       <Banner />
       <Services />
-      <TeleFeed doctorsList={doctorsList}/>
-      <Doctorvisit doctorsList={doctorsList}/>
+      <TeleFeed />
+      <Doctorvisit />
       <Footer />
     </div>
   )
 }
 
-export const getServerSideProps = async () => {
-
-  const res = await axios.get("https://ehealthcare-murex.vercel.app/api/doctors");
-  return {
-    props: {
-      doctorsList: res.data,
-    },
-  };
-};
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res }) => {
+      await store.dispatch(getDoctors(req));
+    });

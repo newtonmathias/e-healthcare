@@ -28,7 +28,6 @@ function UserProfile() {
 
     const { error, isUpdated, loading: updateLoading } = useSelector(state => state.user)
 
-    console.log(loading);
     
     useEffect(() => {
 

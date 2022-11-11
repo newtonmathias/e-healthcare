@@ -39,9 +39,11 @@ function DoctorCard({ doctor }) {
                     {doctor.times.slice(0, 5).map((time) =>(
                         <button className='small-button m-1'key={Math.random()}>{ time }</button>
                     ))}
-                    <Link href={`/doctor/${doctor._id}`} passHref>
-                        <button className='m-1 w-20 h-9 text-indigo-500 font-bold bg-indigo-100 text-sm'>More times</button>
-                    </Link>
+                    <button className='m-1 w-20 h-9 text-indigo-500 font-bold bg-indigo-100 text-sm'>
+                        <Link href={`/doctor/${doctor._id}`} passHref>
+                            More times
+                        </Link> 
+                    </button>
                 </div>
             </div>
             

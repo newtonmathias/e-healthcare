@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import User from '../../../models/User'
+import Doctor from '../../../models/Doctor'
 import dbConnect from "../../../utils/mongo";
 
 export default NextAuth({
@@ -22,7 +23,7 @@ export default NextAuth({
                 }
 
                 // Find user in the database
-                const user = await User.findOne({ email }).select('+password')
+                const user = await User.findOne({ email }).select('+password') || await Doctor.findOne({ email }).select('+password')
 
                 if (!user) {
                     throw new Error('Invalid Email or Password')

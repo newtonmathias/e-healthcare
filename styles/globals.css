@@ -16,7 +16,19 @@
         @apply  block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white border rounded-lg;
     }
 }
-
+/* Doctor login */
+.doclogin {
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)
+}
+.dobutton {
+  background: linear-gradient(
+                          to right,
+                          #ee7724,
+                          #d8363a,
+                          #dd3675,
+                          #b44593
+                        );
+}
 /* Button Loader */
 .lds-dual-ring {
     display: inline-block;
