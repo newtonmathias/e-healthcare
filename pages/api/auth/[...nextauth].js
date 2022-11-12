@@ -6,6 +6,9 @@ import Doctor from '../../../models/Doctor'
 import dbConnect from "../../../utils/mongo";
 
 export default NextAuth({
+    
+    secret:process.env.SECRET,
+
     session: {
         jwt: true
     },
