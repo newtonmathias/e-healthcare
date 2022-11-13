@@ -1,10 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+
+module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["res.cloudinary.com/"]
-  },
+      domains: ["res.cloudinary.com"]
+  }
 }
-
-module.exports = nextConfig

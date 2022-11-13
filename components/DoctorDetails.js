@@ -14,18 +14,77 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { clearErrors } from '../redux/actions/allDoctorsActions';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { checkBooking, getBookedTimes } from '../redux/actions/bookingActions';
+import { CHECK_BOOKING_RESET} from '../redux/constants/bookingConstants';
 
 
 function DoctorDetails() {
 
     const {doctor, error} = useSelector(state => state.doctorDetails)
-    const dispatch = useDispatch()
-    ;
+    const { available, loading: bookingLoading } = useSelector(state => state.checkBooking);
+
+    const dispatch = useDispatch();
+    const router = useRouter();
+
+    const [sessionStart, setSessionStart] = useState();
+    const [sessionStop, setSessionStop] = useState();
+
+    const onClick = (time) => {
+        setSessionStart(time)
+        setSessionStop(time)
+        dispatch(checkBooking(id, sessionStart, sessionStop))
+        
+
+        if (available===true) {
+            console.log('book');
+        } else {
+            console.log('nay');
+        }
+    }
+    const { id } = router.query;
+
+
+    const newBookingHandler = async () => {
+        const bookingData = {
+            doctor: router.query.id,
+            sessionStart,
+            sessionStop,
+            amountPaid: 300,
+            paymentInfo: {
+                id: 'STRIPE_PAYMENT_ID',
+                status: 'STRIPE_PAYMENT_STATUS'
+            }
+        }
+        try {
+
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+
+            const { data } = await axios.post('/api/bookings', bookingData, config)
+
+            console.log(data);
+
+        } catch (error) {
+
+            console.log(error.response);
+
+        }
+
+    }
+
 
     useEffect(() => {
+
+        dispatch(getBookedTimes(id))
+
         toast.error(error)
         dispatch(clearErrors())
-    },[])
+    }, [dispatch, id])
 
     const starArray = [...Array(5).keys()].map(i => i + 1);
     const Rating = () =>
@@ -54,7 +113,7 @@ function DoctorDetails() {
                 <h3 className='font-bold text-lg pt-3'>{doctor.service === "Telemedicine" ? "Telehealth visit" : "In-Person Visit"}</h3>
             </div>
             <div className='p-7'>
-                <Image src="/microscope-doctor.jpg" width={80} height={80} className='rounded-full'/>
+                <Image src={doctor.avatar && doctor.avatar.url} width={80} height={80} className='rounded-full' />
             </div>
             </div>
             <div>
@@ -80,7 +139,7 @@ function DoctorDetails() {
                     </div>
                     <div>
                         {doctor.times?.map((time) =>(
-                            <div className='time-button'key={Math.random()}>{time} KSH.{ doctor.price}</div>
+                            <div onClick={() => onClick(time)} className='time-button'key={Math.random()}>{time} KSH.{ doctor.price}</div>
                         ))}
                     </div>
                     <div>
@@ -167,11 +226,11 @@ function DoctorDetails() {
             <div className='flex justify-between max-w-screen-md mx-auto py-4'>
                 <div>
                     <p className='font-extrabold text-indigo-500'>{doctor.price}</p>
-                    <p className='font-bold text-sm'>Fri, Oct 28 - 4:00 AM GMT+3</p>
+                    <p className='font-bold text-sm'>Fri, Oct 28 - {sessionStart} GMT+3</p>
                     <p className='text-sm font-extralight'>Free cancellation*</p>
                 </div>
                 <div>
-                    <button className='py-4 px-8 bg-indigo-500 text-color1 font-extrabold'>BOOK</button>
+                    <button onClick={newBookingHandler} className='py-4 px-8 bg-indigo-500 text-color1 font-extrabold'>BOOK</button>
                 </div>
             </div>
             

@@ -20,7 +20,7 @@ function DoctorCard({ doctor }) {
                 <h3 className='text-3xl text-indigo-800 font-bold'>{doctor.name}</h3>
                 <div className='flex mt-3'>
                     <div>
-                        <Image src="/microscope-doctor.jpg" width={75} height={75} className='rounded-full'/>
+                        <Image src={doctor.avatar && doctor.avatar.url} width={75} height={75} className='rounded-full'/>
                     </div>
                     <div className='px-2'>
                         <p className='flex'>{Rating(doctor.rating)}</p> 
