@@ -1,4 +1,4 @@
-import { newBooking } from "../../../controllers/bookingCOntrollers";
+import { newBooking } from "../../../controllers/bookingControllers";
 import { isAuthenticatedUser } from "../../../middlewares/auth";
 import dbConnect from "../../../utils/mongo";
 import onError from "../../../middlewares/errors";
