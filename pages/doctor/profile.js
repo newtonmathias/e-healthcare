@@ -1,12 +1,13 @@
 import DoctorProfile from "../../components/DoctorProfile"
 import { getSession } from 'next-auth/react'
+import Layout from "../../components/Layout"
 
 
 function profile() {
   return (
-    <div>
+    <Layout>
         <DoctorProfile />
-    </div>
+    </Layout>
   )
 }
 
