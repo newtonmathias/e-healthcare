@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
+import Layout from '../components/Layout'
 
 import { getSession, signIn } from 'next-auth/react'
 
@@ -34,8 +35,7 @@ export default function Login() {
 
     }
   return (
-    <div>
-        <Header/>
+    <Layout>
             <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
                 
                 <div className='hidden sm:block'>
@@ -79,7 +79,7 @@ export default function Login() {
                     </form>
                 </div>
             </div>
-    </div>
+    </Layout>
   )
 }
 

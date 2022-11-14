@@ -80,11 +80,21 @@ function Header() {
                 <div className={isNavExpanded ? "absolute p-5 m-auto bg-white" : "hidden"}>
                     <div className="">
                         <XMarkIcon className="h-6 w-6" onClick={() => {setIsNavExpanded(!isNavExpanded)}}/>
-                        <p>Login</p>
-                        <p>Sign Up</p>
-                        <p>Televisit</p>
-                        <p>Book Appointment</p>
-                        <p>Provider Login</p>
+                        <Link href="/login">
+                            <p>Login</p>
+                        </Link>
+                        <Link href="/register">
+                            <p>SignUp</p>
+                        </Link>
+                        <Link href="#">
+                            <p>Televisit</p>
+                        </Link>
+                        <Link href="#appointment">
+                            <p>Book Appointment</p>
+                        </Link>
+                        <Link href="/doctor/login">
+                            <p>Provider Login</p>
+                        </Link>
                     </div>
 			    </div>
                 

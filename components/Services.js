@@ -11,7 +11,7 @@ import {
 
 function Services() {
   return (
-    <div className=' hidden md:flex max-w-screen-xl mx-auto'>
+    <div className=' hidden md:flex flex-col max-w-screen-xl mx-auto'>
         <div>
             <h1 className='font-extrabold text-3xl'>Top-rated online doctors & specialists available now.</h1>
             <h2 className='text-lg'>Choose from thousands of providers at every day affordable prices. Book online today.</h2>
