@@ -22,7 +22,7 @@ export default function Home() {
       <Header />
       <Banner />
       <Services />
-      <TeleFeed />
+      <TeleFeed/>
       <Doctorvisit />
       <Footer />
     </div>

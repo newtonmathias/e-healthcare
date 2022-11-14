@@ -39,8 +39,12 @@ function Header() {
                         <p onClick={ () => router.push('/')} className="">MyHealth</p>   
                     </div>
                     <div className="hidden md:flex items-center space-x-1">
-                        <a className="py-4 px-2 text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">Patients</a>
-                        <a className="py-4 px-2 text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">Providers</a>
+                    <Link href={user?'#televisit' :'/login'} className="">
+                        <a className="py-4 px-2 text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">{user?'Televisit' : 'Patient'}</a>
+                    </Link>
+                    <Link href={user?'#appointment' :'/doctor/login'} className="">
+                        <a className="py-4 px-2 text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">{user?'Appointment' : 'Provider'}</a>
+                    </Link>
                     </div>
                     {/*right Nav */}
                 </div>

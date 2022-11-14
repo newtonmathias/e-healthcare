@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import Link from "next/link";
+
 
 function Banner() {
   return (
@@ -18,9 +20,11 @@ function Banner() {
               <p className='py-4 font-serif'>
                 Find the best price for the highest quality physicians. Get connected to a doctor in minutes.
               </p>
-              <button className=' time-button bg-indigo-500 md:button'>
-                Get started
-              </button>
+              <Link href='/register'>
+                <button className=' time-button bg-indigo-500 md:button'>
+                  Get started
+                </button>
+              </Link>
               <p className='py-4'>Named Best Overall Telehealth by MOH</p>
             </div>
           </div>
