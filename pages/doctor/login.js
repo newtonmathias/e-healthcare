@@ -1,13 +1,14 @@
 import React from 'react'
 import DoctorLogin from '../../components/DoctorLogin'
+import Layout from '../../components/Layout'
 import { getSession } from 'next-auth/react'
 
 
 function login() {
   return (
-    <div>
+    <Layout title='Doctor Registration'>
         <DoctorLogin />
-    </div>
+    </Layout>
   )
 }
 
