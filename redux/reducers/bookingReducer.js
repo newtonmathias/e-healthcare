@@ -5,9 +5,12 @@ import {
     CHECK_BOOKING_REQUEST, 
     CHECK_BOOKING_RESET, 
     CHECK_BOOKING_SUCCESS, 
-    CLEAR_ERRORS
+    MY_BOOKINGS_FAIL,
+    MY_BOOKINGS_SUCCESS,
+    BOOKING_DETAILS_SUCCESS,
+    BOOKING_DETAILS_FAIL,
+    CLEAR_ERRORS,
 } from "../constants/bookingConstants";
-
 // Check Booking
 export const checkBookingReducer = (state = { available: null }, action) => {
     switch (action.type) {
@@ -56,6 +59,57 @@ export const bookedTimesReducer = (state = { times: [] }, action) => {
             }
 
         case BOOKED_TIMES_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
+
+export const bookingsReducer = (state = { bookings: [] }, action) => {
+    switch (action.type) {
+
+        case MY_BOOKINGS_SUCCESS:
+            return {
+                loading: false,
+                bookings: action.payload
+            }
+
+        case MY_BOOKINGS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
+
+export const bookingDetailsReducer = (state = { booking: {} }, action) => {
+    switch (action.type) {
+        case BOOKING_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                booking: action.payload
+            }
+
+        case BOOKING_DETAILS_FAIL:
             return {
                 loading: false,
                 error: action.payload
