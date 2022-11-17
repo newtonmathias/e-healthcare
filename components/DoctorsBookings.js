@@ -10,10 +10,10 @@ import {
 } from '@heroicons/react/24/solid'
 
 
-function MyBookings() {
+function DoctorsBookings() {
 
     const dispatch = useDispatch();
-    const { bookings, error } = useSelector(state => state.bookings);
+    const { bookings, error } = useSelector(state => state.doctorBookings);
 
     useEffect (() => {
         if(error) {
@@ -55,7 +55,6 @@ function MyBookings() {
             rows: []
         }
 
-
         bookings && bookings.forEach(booking => {
             data.rows.push({
                 id: booking._id,
@@ -64,20 +63,19 @@ function MyBookings() {
                 amount: booking.amountPaid,
                 actions:
                     <div className=''>
-                        <Link href={`/bookings/${booking._id}`}>
-                                <EyeIcon />
+                        <Link href={`/doctor/patients/${booking._id}`}>
+                                <EyeIcon className="h-4"/>
                         </Link>
-                        <button className="btn btn-success mx-2">
-                                <ArrowDownTrayIcon className="h-6"/>
-                        </button>
                     </div>
             })
         })
 
         return data;
-
+ 
     }
+
     const data = setBookings()
+
   return (
     <div>
             <h1 className='my-5'>My Bookings</h1>
@@ -85,10 +83,10 @@ function MyBookings() {
             <DataTable
             columns={data.columns}
             data={data.rows}
-        />
+            />
 
         </div>
   )
 }
 
-export default MyBookings
+export default DoctorsBookings

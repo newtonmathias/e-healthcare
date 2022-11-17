@@ -25,7 +25,7 @@ function Banner() {
                   Get started
                 </button>
               </Link>
-              <p className='py-4'>Named Best Overall Telehealth by MOH</p>
+              <p className='py-4'>Welcome to the future of healthcare</p>
             </div>
           </div>
     </div>

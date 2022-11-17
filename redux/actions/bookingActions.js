@@ -11,6 +11,10 @@ import {
     MY_BOOKINGS_SUCCESS,
     BOOKING_DETAILS_SUCCESS,
     BOOKING_DETAILS_FAIL,
+    DOCTOR_BOOKINGS_SUCCESS,
+    DOCTOR_BOOKINGS_FAIL,
+    PATIENT_DETAILS_SUCCESS,
+    PATIENT_DETAILS_FAIL,
     CLEAR_ERRORS 
 } from '../constants/bookingConstants'
 
@@ -110,6 +114,59 @@ export const getBookingDetails = (authCookie, req, id) => async (dispatch) => {
     }
 }
 
+export const docBookings = (authCookie, req) => async (dispatch) => {
+    try {
+
+        const { origin } = absoluteUrl(req);
+
+        const config = {
+            headers: {
+                cookie: authCookie
+            }
+        }
+
+        const { data } = await axios.get(`${origin}/api/bookings/doctor/mypatients`, config)
+
+        dispatch({
+            type: DOCTOR_BOOKINGS_SUCCESS,
+            payload: data.bookings
+        })
+
+    } catch (error) {
+
+        dispatch({
+            type: DOCTOR_BOOKINGS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+export const getPatientDetails = (authCookie, req, id) => async (dispatch) => {
+    try {
+
+        const { origin } = absoluteUrl(req);
+
+        const config = {
+            headers: {
+                cookie: authCookie
+            }
+        }
+
+        const { data } = await axios.get(`${origin}/api/bookings/doctor/${id}`, config)
+
+        dispatch({
+            type: PATIENT_DETAILS_SUCCESS,
+            payload: data.booking
+        })
+
+    } catch (error) {
+
+        dispatch({
+            type: PATIENT_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
 // Clear Errors
 export const clearErrors = () => async (dispatch) => {
     dispatch({

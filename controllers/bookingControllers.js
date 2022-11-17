@@ -106,7 +106,7 @@ const getBookingDetails = catchAsyncErrors(async (req, res) => {
     const booking = await Booking.findById(req.query.id)
         .populate({
             path: 'doctor',
-            select: 'name institution avatar'
+            select: 'name institution location specilities avatar'
         })
         .populate({
             path: 'user',
@@ -119,10 +119,41 @@ const getBookingDetails = catchAsyncErrors(async (req, res) => {
     })
 })
 
+// Get all bookings of current doctor   =>   /api/bookings/me
+const docBookings= catchAsyncErrors(async (req, res) => {
+
+    const bookings = await Booking.find({ doctor: req.user._id })
+        
+
+    res.status(200).json({
+        success: true,
+        bookings
+    })
+})
+
+
+// Get patient booking details   =>   /api/bookings/:id
+const getPatientDetails = catchAsyncErrors(async (req, res) => {
+
+    const booking = await Booking.findById(req.query.id)
+        .populate({
+            path: 'user',
+            select: 'name email avatar'
+        })
+
+    res.status(200).json({
+        success: true,
+        booking
+    })
+})
+
+
 export {
     newBooking,
     checkBookingAvailability,
     checkBookedTimesOfDoctor,
     myBookings,
-    getBookingDetails
+    getBookingDetails,
+    docBookings,
+    getPatientDetails
 }

@@ -75,6 +75,8 @@ function DoctorDetails() {
 
         }
 
+        router.push('/bookings/mybookings')
+
     }
 
 

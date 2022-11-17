@@ -10,6 +10,10 @@ import {
     BOOKING_DETAILS_SUCCESS,
     BOOKING_DETAILS_FAIL,
     CLEAR_ERRORS,
+    DOCTOR_BOOKINGS_SUCCESS,
+    DOCTOR_BOOKINGS_FAIL,
+    PATIENT_DETAILS_SUCCESS,
+    PATIENT_DETAILS_FAIL,
 } from "../constants/bookingConstants";
 // Check Booking
 export const checkBookingReducer = (state = { available: null }, action) => {
@@ -110,6 +114,57 @@ export const bookingDetailsReducer = (state = { booking: {} }, action) => {
             }
 
         case BOOKING_DETAILS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
+
+export const docBookingsReducer = (state = { bookings: [] }, action) => {
+    switch (action.type) {
+
+        case DOCTOR_BOOKINGS_SUCCESS:
+            return {
+                loading: false,
+                bookings: action.payload
+            }
+
+        case DOCTOR_BOOKINGS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
+
+export const patientDetailsReducer = (state = { booking: {} }, action) => {
+    switch (action.type) {
+        case PATIENT_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                booking: action.payload
+            }
+
+        case PATIENT_DETAILS_FAIL:
             return {
                 loading: false,
                 error: action.payload

@@ -19,66 +19,61 @@ const BookingDetails = () => {
     }, [dispatch, booking])
 
   return (
-    <div className="container">
-            <div className="flex flex-row justify-between">
-                <div className="col-12 col-lg-8 mt-5 booking-details">
+    <div className="">
                     {booking && booking.doctor && booking.user &&
                         <>
-
-                            <h2 className="my-5">Booking # {booking._id}</h2>
-
-                            <h4 className="mb-4">User Info</h4>
-                            <p><b>Name:</b> {booking.user && booking.user.name}</p>
-                            <p><b>Email:</b> {booking.user && booking.user.email}</p>
-                            <p><b>Amount:</b> ${booking.amountPaid}</p>
-
-                            <hr />
-
-                            <h4 className="mb-4">Booking Info</h4>
-                            <p><b>Session Start:</b> {booking.sessionStart}</p>
-
-                            <p><b>Session Stop:</b> {booking.sessionStop}</p>
-
-                            <p><b>Days of Stay:</b> {booking.daysOfStay}</p>
-
-                            <hr />
-
-
-
-                            <h4 className="mt-5 mb-4">Booked doctor:</h4>
-
-                            <hr />
-                            <div className="cart-item my-1">
-                                <div className="row my-5">
-                                    <div className="col-4 col-lg-2">
+<div class="max-w-sm content-center flex flex-col justify-center mx-auto mt-[10vh] rounded-lg border border-indigo-200 shadow-md dark:bg-indigo-800 dark:border-indigo-700">
+    <div class=" h-40 rounded-t-lg bg-contain bg-no-repeat bg-[url(https://www.linkpicture.com/q/Rectangle-6.png)]  flex flex-col justify-end pl-20 pr-20 pt-52  max-w-[24rem]">
+    <div className="col-4 col-lg-2">
                                         <Image
                                             src={booking.doctor.avatar.url}
                                             alt={booking.doctor.name}
-                                            height={45}
-                                            width={65}
+                                            height={100}
+                                            width={100}
+                                            className='rounded-full'
                                         />
                                     </div>
-
-                                    <div className="col-5 col-lg-5">
-                                        <Link href={`/doctor/${booking.doctor._id}`}>{booking.doctor.name}</Link>
-                                    </div>
-
-                                    <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                                        <p>${booking.doctor.price}</p>
-                                    </div>
-
-                                    <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                                        <p>daysOfStay Day(s)</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
+    </div>
+    <div class="flex flex-col pl-10  pb-10">
+        <h1 class="text-3xl text-indigo-900 font-semibold">
+            <Link href={`/doctor/${booking.doctor._id}`}>{booking.doctor.name}</Link>
+        </h1>     
+        <div class="mb-2 mt-2">
+            <h1 class="text-lg font-semibold">Specilities</h1>
+            <p class="text-base text-indigo-800 font-semibold">{booking.doctor.specilities}</p>
+        </div>
+        <div class="mb-2 mt-2">
+            <h1 class="text-lg font-semibold">Booking Details</h1>
+            <div class="mt-2 flex items-center">
+                <img class="w-5" src="https://www.linkpicture.com/q/image-13_16.png" />
+                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Session Start:</b> {booking.sessionStart}</p></h1>
+            </div>
+            <div class="mt-2 flex items-center">
+                <img class="w-5" src="https://www.linkpicture.com/q/image-14_4.png" />
+                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Session Stop:</b> {booking.sessionStop}</p></h1>
+            </div>
+            <div class="mt-2 flex items-center">
+                <img class="w-5" src="https://www.linkpicture.com/q/image-15_4.png" />
+                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Amount:</b> ${booking.amountPaid}</p></h1>
+            </div>
+            <div class="mt-2 flex items-center">
+                <img class="w-5" src="https://www.linkpicture.com/q/image-16_5.png" />
+                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Location:</b> {booking.doctor.location}</p></h1>
+            </div>
+            <div class="mt-2 flex items-center">
+                <img class="w-5" src="https://www.linkpicture.com/q/image-16_5.png" />
+                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Institution:</b> {booking.doctor.institution}</p></h1>
+            </div>
+            
+           
+        </div>
+    </div>
+</div>
 
                         </>
                     }
                 </div>
-            </div>
-        </div>
+        
   )
 }
 

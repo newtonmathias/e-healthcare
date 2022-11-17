@@ -18,15 +18,18 @@
 }
 /* Doctor login */
 .doclogin {
-  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)
+  background: linear-gradient(to right, rgb(224 231 255),
+  rgb(129 140 248),
+  rgb(79 70 229),
+  rgb(49 46 129))
 }
 .dobutton {
   background: linear-gradient(
                           to right,
-                          #ee7724,
-                          #d8363a,
-                          #dd3675,
-                          #b44593
+                          rgb(224 231 255),
+                          rgb(129 140 248),
+                          rgb(79 70 229),
+                          rgb(49 46 129)
                         );
 }
 /* Button Loader */
@@ -77,23 +80,23 @@
 #forgot_password_button,
 #new_password_button,
 .search-form .btn {
-  background-color: #e61e4d;
-  border-color: #e61e4d;
+  background-color: rgb(55 48 163);
+  border-color: rgb(55 48 163);
   color: white;
   margin-top: 2.5rem;
   font-weight: bold;
 }
 
 .review-btn {
-  background-color: #e61e4d;
-  border-color: #e61e4d;
+  background-color: rgb(55 48 163);
+  border-color: rgb(55 48 163);
   margin-top: 2rem;
   border-radius: 5rem;
 }
 
 .new-room-btn {
-  background-color: #e61e4d;
-  border-color: #e61e4d;
+  background-color: rgb(55 48 163);
+  border-color: rgb(55 48 163);
 }
 
 .wrapper form a {

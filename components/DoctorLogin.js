@@ -47,7 +47,7 @@ const submitHandler = async (e) => {
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                     alt="logo"
                   />
-                  <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">We are The Lotus Team</h4>
+                  <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">Welcome to the team</h4>
                 </div>
                 <form onSubmit={submitHandler}>
                   <p className="mb-4">Please login to your account</p>
@@ -89,7 +89,7 @@ const submitHandler = async (e) => {
                     <Link href='/doctor/register'>
                         <button
                             type="button"
-                            className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                            className="inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                             >
@@ -104,12 +104,9 @@ const submitHandler = async (e) => {
               className="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none doclogin"
             >
               <div className="text-white px-4 py-6 md:p-12 md:mx-6 ">
-                <h4 className="text-xl font-semibold mb-6">We are more than just a company</h4>
-                <p className="text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat.
+                <p className="text-xl">
+                &rdquo;Time and health are two precious assets that we don’t recognize and appreciate until they have been depleted.&rdquo; 
+                <i>– Denis Waitley</i> 
                 </p>
               </div>
             </div>
