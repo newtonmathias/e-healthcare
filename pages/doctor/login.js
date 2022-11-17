@@ -1,14 +1,15 @@
 import React from 'react'
 import DoctorLogin from '../../components/DoctorLogin'
-import Layout from '../../components/Layout'
+import DoctorNavBar from '../../components/DoctorNavBar'
 import { getSession } from 'next-auth/react'
 
 
 function login() {
   return (
-    <Layout title='Doctor Registration'>
+    <div title='Doctor Login'>
+        <DoctorNavBar />
         <DoctorLogin />
-    </Layout>
+    </div>
   )
 }
 
