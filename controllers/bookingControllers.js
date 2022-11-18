@@ -92,6 +92,14 @@ const checkBookedTimesOfDoctor = catchAsyncErrors(async (req, res) => {
 const myBookings = catchAsyncErrors(async (req, res) => {
 
     const bookings = await Booking.find({ user: req.user._id })
+    .populate({
+        path: 'doctor',
+        select: 'name institution price location specilities avatar'
+    })
+    .populate({
+        path: 'user',
+        select: 'name email'
+    })
         
 
     res.status(200).json({
