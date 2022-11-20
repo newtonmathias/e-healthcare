@@ -1,5 +1,7 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors";
 import Booking from "../models/Booking";
+import { format } from 'date-fns';
+
 import ErrorHandler from '../utils/errorHandler'
 
 // Create new Booking   =>   /api/bookings
@@ -11,6 +13,7 @@ const newBooking = catchAsyncErrors(async (req, res) => {
         sessionStop,
         amountPaid,
         paymentInfo,
+        dateOfBooking
     } = req.body;
 
     const booking = await Booking.create({
@@ -20,6 +23,7 @@ const newBooking = catchAsyncErrors(async (req, res) => {
         sessionStop,
         amountPaid,
         paymentInfo,
+        dateOfBooking
     })
 
     res.status(200).json({
@@ -66,22 +70,44 @@ const checkBookingAvailability  = catchAsyncErrors(async (req, res) => {
 // Check booked times for a doctor   =>   /api/bookings/check_booked_times
 const checkBookedTimesOfDoctor = catchAsyncErrors(async (req, res) => {
 
-    const { doctorId } = req.query;
+    const { doctorId, amount } = req.query;
+        //date variables
+        const today = new Date()
+        const tomorrow = new Date(today)
+        const overmorrow = new Date(today)
+        tomorrow.setDate(tomorrow.getDate() + 1)
+        overmorrow.setDate(tomorrow.getDate() + 2)
+        const formatedToday = format(today, "PPP") 
+        const formatedTomorrow = format(tomorrow, "PPP") 
+        const formatedOvermorrow = format(overmorrow, "PPP")
 
-    const bookings = await Booking.find({ doctor: doctorId });
+    const todayBookings = await Booking.find({ doctor: doctorId, dateOfBooking: formatedToday });
+    const tomorrowBookings = await Booking.find({ doctor: doctorId, dateOfBooking: formatedTomorrow });
+    const overmorrowBookings = await Booking.find({ doctor: doctorId, dateOfBooking: formatedOvermorrow });
 
-    let bookedTimes = [];
+    let todayTimes = [];
+    let tomorrowTimes = [];
+    let overmorrowTimes = [];
 
 
-    bookings.forEach(booking => {
-
+    todayBookings.forEach(booking => {
         const sessionStart = booking.sessionStart
-        const sessionStop = booking.sessionStop
-
-        const times = [sessionStart, sessionStop]
-        bookedTimes = bookedTimes.concat(times)
+        const times = [sessionStart]
+        todayTimes = todayTimes.concat(times)
     })
 
+    tomorrowBookings.forEach(booking => {
+        const sessionStart = booking.sessionStart
+        const times = [sessionStart]
+        tomorrowTimes = tomorrowTimes.concat(times)
+    })
+
+    overmorrowBookings.forEach(booking => {
+        const sessionStart = booking.sessionStart
+        const times = [sessionStart]
+        overmorrowTimes = overmorrowTimes.concat(times)
+    })
+    let bookedTimes = [{todayTimes}, {tomorrowTimes},{overmorrowTimes}]
     res.status(200).json({
         success: true,
         bookedTimes

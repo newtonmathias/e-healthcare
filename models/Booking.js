@@ -33,6 +33,13 @@ const bookingSchema = new mongoose.Schema ({
             required: true,
         }
     },
+    paidAt: {
+        type: Date,
+        required: true,
+    },
+    dateOfBooking: {
+        type: String,
+    }
 })
 
 export default mongoose.models.Booking || mongoose.model('Booking', bookingSchema)
