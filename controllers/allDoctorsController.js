@@ -1,5 +1,6 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors";
 import Doctor from "../models/Doctor";
+import Booking from "../models/Booking";
 import APIFeatures from "../utils/apiFeatures";
 import ErrorHandler from "../utils/errorHandler";
 
@@ -47,7 +48,56 @@ const getSingleDoctor = catchAsyncErrors(async (req, res, next) => {
 
 })
 
+// Create a new review   =>   /api/reviews
+const createDoctorReview = catchAsyncErrors(async (req, res) => {
+
+    const { rating, comment, doctorId } = req.body;
+
+    const review = {
+        user: req.user._id,
+        name: req.user.name,
+        rating: Number(rating),
+        comment
+    }
+
+    const doctor = await Doctor.findById(doctorId);
+
+        doctor.reviews.push(review);
+        doctor.numOfReviews = doctor.reviews.length
+
+    doctor.ratings = doctor.reviews.reduce((acc, item) => item.rating + acc, 0) / doctor.reviews.length
+
+    await doctor.save({ validateBeforeSave: false })
+
+    res.status(200).json({
+        success: true,
+    })
+
+})
+
+// Check Review Availability   =>   /api/reviews/check_review_availability
+
+const checkReviewAvailability = catchAsyncErrors(async (req, res) => {
+
+    const { doctorId } = req.query;
+
+    const bookings = await Booking.find({ user: req.user._id, doctor: doctorId })
+
+    let isReviewAvailable = false;
+    if (bookings.length > 0) isReviewAvailable = true
+
+
+    res.status(200).json({
+        success: true,
+        isReviewAvailable
+    })
+
+})
+
+
 export {
     allDoctors,
-    getSingleDoctor
+    getSingleDoctor,
+    createDoctorReview,
+    checkReviewAvailability
 }

@@ -1,7 +1,7 @@
 import { authReducer, loadedUserReducer, userReducer } from "./userReducers";
 import { combineReducers } from 'redux';
 import { docAuthReducer, doctorReducer, loadedDoctorReducer } from "./doctorReducers";
-import { allDoctorsReducer, doctorDetailsReducer } from "./allDoctorsReducers";
+import { allDoctorsReducer, checkReviewReducer, doctorDetailsReducer, newReviewReducer } from "./allDoctorsReducers";
 import { bookedTimesReducer, bookingDetailsReducer, bookingsReducer, checkBookingReducer, docBookingsReducer, patientDetailsReducer } from "./bookingReducer";
 
 checkBookingReducer
@@ -19,7 +19,9 @@ const reducer = combineReducers({
     bookings: bookingsReducer,
     bookingDetails: bookingDetailsReducer,
     doctorBookings: docBookingsReducer,
-    patient: patientDetailsReducer
+    patient: patientDetailsReducer,
+    newReview: newReviewReducer,
+    checkReview: checkReviewReducer
 })
 
 export default reducer

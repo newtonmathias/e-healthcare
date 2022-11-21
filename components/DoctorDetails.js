@@ -20,6 +20,8 @@ import { checkBooking, getBookedTimes } from '../redux/actions/bookingActions';
 import { CHECK_BOOKING_RESET} from '../redux/constants/bookingConstants';
 import getStripe from '../utils/getStripe';
 import { format } from 'date-fns';
+import { NewReview } from './NewReview';
+import ListReview from './ListReview';
 
 
 function DoctorDetails() {
@@ -32,7 +34,7 @@ function DoctorDetails() {
     const tomorrow = new Date(today)
     const overmorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)
-    overmorrow.setDate(tomorrow.getDate() + 2)
+    overmorrow.setDate(tomorrow.getDate() + 1)
     const formatedToday = format(today, "PPP") 
     const formatedTomorrow = format(tomorrow, "PPP") 
     const formatedOvermorrow = format(overmorrow, "PPP") 
@@ -213,38 +215,12 @@ function DoctorDetails() {
                     </div>
                 </div>
                 <div className='px-7'>
-                    <h3 className='font-semibold text-2xl py-2'>Patient reviews</h3>
-                    <div className="flex justify-between">
-                        <div>
-                            <p>Overall satisfaction</p>
-                            <div className="flex ">
-                                {Rating(doctor.rating)}
-                            </div>
-                        </div>
-                        <div>
-                            <p>Waiting time</p>
-                            <p>Would recommend</p>
-                            <p>Bedside manner</p>
-                            <p>Would visit again</p>
-                        </div>
-                    </div>
-                    {doctor.reviews?.map((review) =>(
-                        <div className='my-5 border-b' key={Math.random()}>
-                        <div className="flex justify-between">
-                            <div className='text-green-800 font-bold inline-flex my-3'>
-                                <HandThumbUpIcon className='h-3 my-auto px-1'/>
-                                <p className='font-serif pr-1'>Satisfied</p>
-                            </div>
-                            <div className='text-green-800 inline-flex my-3'>
-                                <CheckBadgeIcon className='h-3 my-auto px-1'/>
-                                <p className='font-serif pr-1'>Verified patient</p>
-                            </div>
-                        </div>
-                        <p className='pb-8'>
-                            {review}
-                        </p>
-                    </div>                        
-                    ))}
+                       <NewReview/>   
+                       {doctor.reviews && doctor.reviews.length > 0 ?
+                        <ListReview reviews={doctor.reviews} />
+                        :
+                        <p><b>No Reviews on this doctor</b></p>
+                }                  
                 </div>
             </div>
         </div>

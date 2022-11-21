@@ -76,7 +76,7 @@ const checkBookedTimesOfDoctor = catchAsyncErrors(async (req, res) => {
         const tomorrow = new Date(today)
         const overmorrow = new Date(today)
         tomorrow.setDate(tomorrow.getDate() + 1)
-        overmorrow.setDate(tomorrow.getDate() + 2)
+        overmorrow.setDate(tomorrow.getDate() + 1)
         const formatedToday = format(today, "PPP") 
         const formatedTomorrow = format(tomorrow, "PPP") 
         const formatedOvermorrow = format(overmorrow, "PPP")

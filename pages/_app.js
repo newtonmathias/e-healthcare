@@ -2,6 +2,7 @@ import '../styles/globals.css'
 
 import { wrapper } from '../redux/store'
 import { SessionProvider } from "next-auth/react"
+import { useEffect } from 'react';
 
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
