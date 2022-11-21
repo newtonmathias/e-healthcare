@@ -31,6 +31,6 @@ export default function Home() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, res }) => {
-      await store.dispatch(getDoctors(req));
+    async ({ req, query }) => {
+      await store.dispatch(getDoctors(req, query.location));
     });

@@ -4,6 +4,14 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { clearErrors } from "../redux/actions/bookingActions";
 import Image from "next/image";
+import { 
+    ClockIcon,
+    CalendarDaysIcon,
+    BanknotesIcon,
+    MapPinIcon,
+    BuildingLibraryIcon,
+    BuildingOffice2Icon
+} from '@heroicons/react/24/outline'
 
 const BookingDetails = () => {
     const dispatch = useDispatch()
@@ -45,23 +53,23 @@ const BookingDetails = () => {
         <div class="mb-2 mt-2">
             <h1 class="text-lg font-semibold">Booking Details</h1>
             <div class="mt-2 flex items-center">
-                <img class="w-5" src="https://www.linkpicture.com/q/image-13_16.png" />
+                <ClockIcon className="h-5" />
                 <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Session Start:</b> {booking.sessionStart}</p></h1>
             </div>
             <div class="mt-2 flex items-center">
-                <img class="w-5" src="https://www.linkpicture.com/q/image-14_4.png" />
-                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Session Stop:</b> {booking.sessionStop}</p></h1>
+                <CalendarDaysIcon className="h-5" />
+                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Date:</b> {booking.dateOfBooking}</p></h1>
             </div>
             <div class="mt-2 flex items-center">
-                <img class="w-5" src="https://www.linkpicture.com/q/image-15_4.png" />
-                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Amount:</b> ${booking.amountPaid}</p></h1>
+                <BanknotesIcon className="h-5" />
+                <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Amount:</b> KSh.{booking.amountPaid}</p></h1>
             </div>
             <div class="mt-2 flex items-center">
-                <img class="w-5" src="https://www.linkpicture.com/q/image-16_5.png" />
+                <MapPinIcon className="h-5" />
                 <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Location:</b> {booking.doctor.location}</p></h1>
             </div>
             <div class="mt-2 flex items-center">
-                <img class="w-5" src="https://www.linkpicture.com/q/image-16_5.png" />
+                <BuildingOffice2Icon className="h-5" />
                 <h1 class="text-base text-indigo-900 ml-5 font-semibold"><p><b className=" text-black">Institution:</b> {booking.doctor.institution}</p></h1>
             </div>
             

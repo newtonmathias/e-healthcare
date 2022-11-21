@@ -4,12 +4,28 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { clearErrors } from "../redux/actions/bookingActions";
 import Image from "next/image";
+import Script from 'next/script'
+
 
 const PatientDetails = () => {
     const dispatch = useDispatch()
 
     const { booking, error } = useSelector(state => state.patient)
     const { doctor, loading } = useSelector(state => state.loadedDoctor);
+
+    
+    function handleClick () {
+      let modal = document.getElementById("my-modal");
+
+        modal.classList.remove('hidden')
+        modal.classList.add('flex')
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.add('hidden')
+            }
+          }
+    }
 
     useEffect(() => {
         if (error) {
@@ -21,8 +37,9 @@ const PatientDetails = () => {
   return (
            
 <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 bg-[url('/doctorhero.jpg')]">
+<Script src="https://smtpjs.com/v3/smtp.js" />
   <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-    <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-60 border border-gray-200 backdrop-filter: blur(20px);">
+    <div className="relative px-4 py-10 bg-color1 shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-60 border border-gray-200 backdrop-filter: blur(20px);">
       <div className="max-w-md mx-auto">
         <div>
         <h1 className="text-lg font-bold text-indigo-900">Booking ID: {booking._id}</h1>
@@ -57,7 +74,7 @@ const PatientDetails = () => {
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                   </svg>
                 </span>
-                <p className="ml-2"><b>Amount:</b> ${booking.amountPaid}</p>
+                <p className="ml-2"><b>Amount:</b> KSH.{booking.amountPaid}</p>
               </li>
               <li className="flex items-start">
                 <span className="h-6 flex items-center sm:h-7">
@@ -73,13 +90,33 @@ const PatientDetails = () => {
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                   </svg>
                 </span>
-                <p className="ml-2"><b>Session Stop:</b> {booking.sessionStop}</p>
+                <p className="ml-2"><b>Date:</b> {booking.dateOfBooking}</p>
               </li>
             </ul>
           </div>
           <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-            <p>Accept </p>
+            <button className="small-button" onClick={handleClick}>Message </button>
           </div>
+          <div
+            className="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full  w-full"
+            id="my-modal"
+        >
+        <div
+            className="relative top-20 m-auto p-5 border w-96 bg-opacity-60 shadow-lg rounded-md bg-white h-1/2"
+        >
+            <div className="mt-3 text-center">
+            <textarea
+                    name="" id="" cols="40" rows="8" className='border border-solid border-gray-300 shadow-lg rounded-md outline-none'
+                ></textarea>
+
+                <button 
+                    className='small-button font-extrabold'
+                > 
+                Send
+                </button>
+            </div>
+        </div>
+    </div>
         </div>
       </div>
     </div>

@@ -17,12 +17,12 @@ import {
 } from "../constants/allDoctorsConstants";
 
 // Get all doctors
-export const getDoctors = (req) => async (dispatch) => {
+export const getDoctors = (req, location='') => async (dispatch) => {
     try {
 
         const { origin } = absoluteUrl(req);
 
-        const { data } = await axios.get(`${origin}/api/doctors`)
+        const { data } = await axios.get(`${origin}/api/doctors?location=${location}`)
 
         dispatch({
             type: ALL_DOCTORS_SUCCESS,

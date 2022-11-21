@@ -14,7 +14,7 @@ function DoctorsBookings() {
 
     const dispatch = useDispatch();
     const { bookings, error } = useSelector(state => state.doctorBookings);
-
+    console.log(bookings);
     useEffect (() => {
         if(error) {
             toast.error(error);
@@ -36,8 +36,8 @@ function DoctorsBookings() {
                     sortable: true,
                 },
                 {
-                    name: 'Session Stop',
-                    selector: row => row.sessionStop,
+                    name: 'Date',
+                    selector: row => row.dateOfBooking,
                     sortable: true,
                 },
                 {
@@ -59,7 +59,7 @@ function DoctorsBookings() {
             data.rows.push({
                 id: booking._id,
                 sessionStart: booking.sessionStart,
-                sessionStop: booking.sessionStop,
+                dateOfBooking: booking.dateOfBooking,
                 amount: booking.amountPaid,
                 actions:
                     <div className=''>

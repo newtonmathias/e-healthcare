@@ -8,8 +8,11 @@ import {
     BoltIcon,
     EyeDropperIcon
  } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/router';
 
 function Services() {
+    const router = useRouter();
+    
   return (
     <div className=' hidden md:flex flex-col max-w-screen-xl mx-auto'>
         <div>
@@ -23,7 +26,7 @@ function Services() {
                 <ArrowRightIcon className='absolute bottom-2 left-2 h-5' />
             </div>
             
-            <div className='relative flex flex-col m-5 z-10 p-4 bg-color1 h-44'>
+            <div className='relative flex flex-col m-5 z-10 p-4 bg-color1 h-44 cursor-pointer' onClick={ () => router.push('/telehealth')}>
                 <VideoCameraIcon className=' absolute top-2 left-2 h-5' />
                 <h2 className='m-auto font-extrabold'>Telehealth</h2>
                 <ArrowRightIcon className='absolute bottom-2 left-2 h-5' />

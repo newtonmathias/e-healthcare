@@ -19,7 +19,17 @@ function Header() {
     const dispatch = useDispatch()
 
     const { user, loading } = useSelector(state => state.loadedUser)
-    const { doctors } = useSelector(state => state.allDoctors);
+
+    const [location, setLocation] = useState('');
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        if (location.trim()) {
+            router.push(`/?location=${location}`)
+        } else {
+            router.push('/')
+        }
+    }
 
     useEffect(() => {
         dispatch(loadUser())
@@ -49,14 +59,19 @@ function Header() {
                     {/*right Nav */}
                 </div>
                 <div className="hidden md:flex justify-end space-x-6">
-                    <div className="flex relative  items-center cursor-pointer text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">
+                    {/*<div className="flex relative  items-center cursor-pointer text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">
                         <input type="text" placeholder="Doctor, Service, Symptom" className="pl-8  items-center focus:outline-none border-b border-indigo-500"/>
                         <MagnifyingGlassIcon className="h-14 p-4  absolute inset-y-0 left-0 flex items-center pl-0" />
-                    </div>
-                    <div className="flex relative items-center  cursor-pointer text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">
-                        <input type="text" className="pl-8 items-center focus:outline-none  border-b border-indigo-500" placeholder="Westlands,Nairobi"/>
+                    </div>*/}
+                    <form onSubmit={submitHandler} className="flex relative items-center  cursor-pointer text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">
+                        <input 
+                            type="text" className="pl-8 items-center focus:outline-none  border-b border-indigo-500" 
+                            placeholder="Nairobi"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            />
                         <MapPinIcon className="h-14 p-4 absolute inset-y-0 left-0 flex items-center pl-0"/>
-                    </div>
+                    </form>
                     
                         <div className="flex items-center cursor-pointer text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">
                         {user ? (

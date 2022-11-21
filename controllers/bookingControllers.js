@@ -3,6 +3,7 @@ import Booking from "../models/Booking";
 import { format } from 'date-fns';
 
 import ErrorHandler from '../utils/errorHandler'
+import sendEmail from "../utils/sendMail";
 
 // Create new Booking   =>   /api/bookings
 const newBooking = catchAsyncErrors(async (req, res) => {
@@ -70,7 +71,7 @@ const checkBookingAvailability  = catchAsyncErrors(async (req, res) => {
 // Check booked times for a doctor   =>   /api/bookings/check_booked_times
 const checkBookedTimesOfDoctor = catchAsyncErrors(async (req, res) => {
 
-    const { doctorId, amount } = req.query;
+    const { doctorId,  } = req.query;
         //date variables
         const today = new Date()
         const tomorrow = new Date(today)
@@ -182,6 +183,7 @@ const getPatientDetails = catchAsyncErrors(async (req, res) => {
 })
 
 
+
 export {
     newBooking,
     checkBookingAvailability,
@@ -189,5 +191,5 @@ export {
     myBookings,
     getBookingDetails,
     docBookings,
-    getPatientDetails
+    getPatientDetails,
 }
