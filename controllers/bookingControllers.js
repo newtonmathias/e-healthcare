@@ -192,4 +192,5 @@ export {
     getBookingDetails,
     docBookings,
     getPatientDetails,
+
 }

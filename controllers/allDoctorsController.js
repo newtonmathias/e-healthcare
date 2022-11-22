@@ -3,6 +3,14 @@ import Doctor from "../models/Doctor";
 import Booking from "../models/Booking";
 import APIFeatures from "../utils/apiFeatures";
 import ErrorHandler from "../utils/errorHandler";
+import cloudinary from 'cloudinary'
+
+// Setting up cloudinary config
+cloudinary.config({ 
+    cloud_name: 'dnytljy0h', 
+    api_key: '576126941489683', 
+    api_secret: 'vNMDbjvyYRGXDRwLrQ_BGjcjA5E' 
+  });
 
 
 //get all doctors api/doctors
@@ -94,10 +102,47 @@ const checkReviewAvailability = catchAsyncErrors(async (req, res) => {
 
 })
 
+// Get all doctors - ADMIN   =>   /api/admin/doctors
+const allAdminDoctors = catchAsyncErrors(async (req, res) => {
+
+    const doctors = await Doctor.find();
+
+    res.status(200).json({
+        success: true,
+        doctors
+    })
+
+})
+
+
+// Delete Doctor   =>   /api/doctor/:id
+const deleteDoctor = catchAsyncErrors(async (req, res) => {
+
+    const doctor = await Doctor.findById(req.query.id);
+
+    if (!doctor) {
+        return next(new ErrorHandler('doctor not found with this ID', 404))
+    }
+
+    // Delete images associated with the doctor
+    for (let i = 0; i < doctor.avatar.length; i++) {
+        await cloudinary.v2.uploader.destroy(doctor.avatar.public_id)
+    }
+
+    await doctor.remove();
+
+    res.status(200).json({
+        success: true,
+        message: 'doctor is deleted.'
+    })
+
+})
 
 export {
     allDoctors,
     getSingleDoctor,
     createDoctorReview,
-    checkReviewAvailability
+    checkReviewAvailability,
+    allAdminDoctors,
+    deleteDoctor
 }

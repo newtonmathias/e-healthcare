@@ -21,7 +21,8 @@ const reducer = combineReducers({
     doctorBookings: docBookingsReducer,
     patient: patientDetailsReducer,
     newReview: newReviewReducer,
-    checkReview: checkReviewReducer
+    checkReview: checkReviewReducer,
+    doctor: doctorReducer //delete doc
 })
 
 export default reducer

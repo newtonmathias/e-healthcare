@@ -13,6 +13,13 @@ import {
     REVIEW_AVAILABILITY_REQUEST,
     REVIEW_AVAILABILITY_SUCCESS,
     REVIEW_AVAILABILITY_FAIL,
+    ADMIN_DOCTORS_REQUEST,
+    ADMIN_DOCTORS_SUCCESS,
+    ADMIN_DOCTORS_FAIL,
+    DELETE_DOCTOR_REQUEST,
+    DELETE_DOCTOR_SUCCESS,
+    DELETE_DOCTOR_FAIL,
+    DELETE_DOCTOR_RESET,
     CLEAR_ERRORS 
 } from "../constants/allDoctorsConstants";
 
@@ -99,6 +106,51 @@ export const checkReviewAvailability = (doctorId) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: REVIEW_AVAILABILITY_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Get all doctors - ADMIN
+export const getAdminDoctors= () => async (dispatch) => {
+    try {
+
+        dispatch({ type: ADMIN_DOCTORS_REQUEST })
+
+        const { data } = await axios.get(`/api/admin/doctors`)
+
+        dispatch({
+            type: ADMIN_DOCTORS_SUCCESS,
+            payload: data.doctors
+        })
+
+    } catch (error) {
+
+        console.log(error);
+
+        dispatch({
+            type: ADMIN_DOCTORS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+//delete doctor
+export const deleteDoctor = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: DELETE_DOCTOR_REQUEST })
+
+        const { data } = await axios.delete(`/api/doctors/${id}`)
+
+        dispatch({
+            type: DELETE_DOCTOR_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        dispatch({
+            type: DELETE_DOCTOR_FAIL,
             payload: error.response.data.message
         })
     }

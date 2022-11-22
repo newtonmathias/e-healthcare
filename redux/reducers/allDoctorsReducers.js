@@ -10,13 +10,25 @@ import {
     REVIEW_AVAILABILITY_REQUEST,
     REVIEW_AVAILABILITY_SUCCESS,
     REVIEW_AVAILABILITY_FAIL,
+    ADMIN_DOCTORS_REQUEST,
+    ADMIN_DOCTORS_SUCCESS,
+    ADMIN_DOCTORS_FAIL,
     CLEAR_ERRORS,
+    DELETE_DOCTOR_REQUEST,
+    DELETE_DOCTOR_SUCCESS,
+    DELETE_DOCTOR_FAIL,
+    DELETE_DOCTOR_RESET,
 } from "../constants/allDoctorsConstants";
 
 
 //All doctors reducer
 export const allDoctorsReducer = (state = { doctors: [] }, action) => {
     switch (action.type) {
+        case ADMIN_DOCTORS_REQUEST:
+            return {
+                loading: true,
+            }
+
         case ALL_DOCTORS_SUCCESS:
             return {
                 doctorsCount: action.payload.doctorsCount,
@@ -24,7 +36,15 @@ export const allDoctorsReducer = (state = { doctors: [] }, action) => {
                 filteredDoctorsCount: action.payload.filteredDoctorsCount,
                 doctors: action.payload.doctors
             }
+
+        case ADMIN_DOCTORS_SUCCESS:
+            return {
+                loading: false,
+                doctors: action.payload
+            }
+
         case ALL_DOCTORS_FAIL:
+        case ADMIN_DOCTORS_FAIL:
             return {
                 error: action.payload
             }
@@ -59,6 +79,43 @@ export const doctorDetailsReducer = (state = { doctor: {} }, action) => {
                 error: null
             }
         
+        default:
+            return state
+    }
+}
+
+//delete doctor
+export const doctorReducer = (state = {}, action) => {
+    switch (action.type) {
+        case DELETE_DOCTOR_REQUEST:
+            return {
+                loading: true
+            }
+
+        case DELETE_DOCTOR_SUCCESS:
+            return {
+                loading: false,
+                isDeleted: action.payload
+            }
+
+        case DELETE_DOCTOR_RESET:
+            return {
+                loading: false,
+                isDeleted: false
+            }
+
+        case DELETE_DOCTOR_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
         default:
             return state
     }
