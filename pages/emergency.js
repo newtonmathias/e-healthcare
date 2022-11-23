@@ -1,5 +1,5 @@
 import React from 'react'
-import Emergency from '../components/emergency'
+import Emergency from '../components/Emergency'
 import Layout from '../components/Layout'
 import { getDoctors } from '../redux/actions/allDoctorsActions'
 import { wrapper } from '../redux/store'
