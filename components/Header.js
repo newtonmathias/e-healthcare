@@ -75,11 +75,43 @@ function Header() {
                     
                         <div className="flex items-center cursor-pointer text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">
                         {user ? (
-                            <div className="flex">
+                            <div className="group inline-block">
+                            <button
+                              className="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center min-w-32"
+                            >
+                              <span className="pr-1 font-semibold flex">
                                 <img className="avatar avatar-nav" src={user.avatar && user.avatar.url}></img>
-                                {/*<p>{user.name.substring(0, user.name.indexOf(' '))}</p>*/}
-                                <span onClick={logoutHandler}>Logout</span>
-                            </div>
+                                <p>{user.name.substring(0, user.name.indexOf(' '))}</p>
+                              </span>
+                              <span>
+                                <svg
+                                  className="fill-current h-4 w-4 transform group-hover:-rotate-180
+                                  transition duration-150 ease-in-out"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path
+                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                  />
+                                </svg>
+                              </span>
+                            </button>
+                            <ul
+                              className="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
+                            transition duration-150 ease-in-out origin-top min-w-32"
+                            >
+                              <li className="rounded-sm px-3 py-1 hover:bg-gray-100" onClick={ () => router.push('/user/update')}>Profile</li>
+                              <li className="rounded-sm px-3 py-1 hover:bg-gray-100" onClick={ () => router.push('/bookings/mybookings')}>My Bookings</li>
+                              <li className="rounded-sm relative px-3 py-1 hover:bg-gray-100">
+                                <button
+                                  className="w-full text-left flex items-center outline-none focus:outline-none"
+                                >
+                                  <span className="pr-1 flex-1" onClick={logoutHandler}>Log Out</span>
+                                </button>
+                                
+                              </li>
+                            </ul>
+                          </div>
                              
                              ) : !loading &&
                              <Link href='/login' className="">

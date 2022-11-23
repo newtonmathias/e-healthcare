@@ -7,7 +7,6 @@ import { getSession } from 'next-auth/react'
 function login() {
   return (
     <div title='Doctor Login'>
-        <DoctorNavBar />
         <DoctorLogin />
     </div>
   )

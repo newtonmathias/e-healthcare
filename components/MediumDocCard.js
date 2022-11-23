@@ -15,7 +15,7 @@ const MediumDocCard = ({ doctor }) => {
 
   return (
         <div className='flex space-x-2'>
-            <div className='m-2 bg-white p-4' >
+            <div className='m-2 bg-white p-4 mx-auto w-2/3' >
                 <h3 className='text-3xl text-indigo-800 font-bold'>{doctor.name}</h3>
                 <div className='flex mt-3'>
                     <div>
@@ -30,20 +30,21 @@ const MediumDocCard = ({ doctor }) => {
                             <p className='font-serif p-1 text-xs font-semibold text-orange-400'>HIGHLY RATED</p>
                         </div>
                     </div>
+                    <div>
+                        {doctor.times.slice(0, 5).map((time) =>(
+                            <button className='small-button m-1'key={Math.random()}>{ time }</button>
+                        ))}
+                        <button className='m-1 w-20 h-9 text-indigo-500 font-bold bg-indigo-100 text-sm'>
+                            <Link href={`/doctor/${doctor._id}`} passHref>
+                                More times
+                            </Link> 
+                        </button>
+                        <p className='border-b pb-4 font-serif font-extralight'>{doctor.desc.substring(0, 65)}...</p>
+                    </div>
                 </div>
-                <p className='border-b pb-4 font-serif font-extralight'>{doctor.desc.substring(0, 65)}...</p>
                 <p>{ format(new Date(), "PPP") }</p>
             
-                <div>
-                    {doctor.times.slice(0, 5).map((time) =>(
-                        <button className='small-button m-1'key={Math.random()}>{ time }</button>
-                    ))}
-                    <button className='m-1 w-20 h-9 text-indigo-500 font-bold bg-indigo-100 text-sm'>
-                        <Link href={`/doctor/${doctor._id}`} passHref>
-                            More times
-                        </Link> 
-                    </button>
-                </div>
+                
             </div>
             
         </div>

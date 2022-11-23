@@ -45,7 +45,7 @@ function DoctorNavBar() {
                 <div className="hidden md:flex justify-end space-x-6">
                     <div className="hidden md:flex items-center space-x-1">
                         <a onClick={ () => router.push('/doctor/patients')} className="py-4 px-2 text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">MyPatients</a>
-                        <a className="py-4 px-2 text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">Schedule</a>
+                        <a onClick={ () => router.push('/doctor/patients')} className="py-4 px-2 text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">Schedule</a>
                     </div>
                     
                     <div className="flex items-center cursor-pointer text-indigo-800 font-semibold hover:text-indigo-500 transition duration-300">

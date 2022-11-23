@@ -38,8 +38,8 @@ function MyBookings() {
                     sortable: true,
                 },
                 {
-                    name: 'Session Stop',
-                    selector: row => row.sessionStop,
+                    name: 'Date',
+                    selector: row => row.dateOfBooking,
                     sortable: true,
                 },
                 {
@@ -62,7 +62,7 @@ function MyBookings() {
             data.rows.push({
                 id: booking._id,
                 sessionStart: booking.sessionStart,
-                sessionStop: booking.sessionStop,
+                dateOfBooking: booking.dateOfBooking,
                 amount: booking.amountPaid,
                 actions:
                     <div className=''>
@@ -103,15 +103,13 @@ function MyBookings() {
                 "company": `${booking.user.name}`,
                 "address": `${booking.user.email}`,
                 "city": `Session Start: ${booking.sessionStart}`,
-                "country": `Session Stop: ${booking.sessionStop}`
+                "country": `Date: ${booking.dateOfBooking}`,
             },
             "information": {
                 // Invoice number
                 "number": `${booking._id}`,
                 // Invoice data
                 "date": `${ format(new Date(), "PPP") }`,
-                // Invoice due date
-                "due-date": `${ format(new Date(), "PPP") }`,
             },
             "products": [
                 {

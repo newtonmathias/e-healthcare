@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { clearErrors } from "../redux/actions/bookingActions";
 import Image from "next/image";
 import Script from 'next/script'
+import { useState } from "react";
 
 
 const PatientDetails = () => {
@@ -12,6 +13,8 @@ const PatientDetails = () => {
 
     const { booking, error } = useSelector(state => state.patient)
     const { doctor, loading } = useSelector(state => state.loadedDoctor);
+    const [message, setMessage] = useState('');
+    console.log(booking);
 
     
     function handleClick () {
@@ -26,6 +29,32 @@ const PatientDetails = () => {
             }
           }
     }
+
+    const handleSubmit = async (e) => {
+      let modal = document.getElementById("my-modal");
+      e.preventDefault();
+    
+       
+        const res = await fetch("/api/bookings/doctor/sendmail", {
+          body: JSON.stringify({
+            email: booking.user && booking.user.email,
+            fullname: booking.doctor && booking.doctor.name,
+            subject: 'Ehealthcare',
+            message: message,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+        });
+  
+        const { error } = await res.json();
+        if (error) {
+          console.log(error);
+          return;
+        }
+        modal.classList.add('hidden')
+    };
 
     useEffect(() => {
         if (error) {
@@ -55,7 +84,7 @@ const PatientDetails = () => {
                   </svg>
                 </span>
                 <p className="ml-2">
-                 <b>Name:</b> {booking.user && booking.user.name}
+                 <b className="text-black">Name:</b> {booking.user && booking.user.name}
                 </p>
               </li>
               <li className="flex items-start">
@@ -64,8 +93,8 @@ const PatientDetails = () => {
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                   </svg>
                 </span>
-                <p className="ml-2">
-                    <b>Email:</b> {booking.user && booking.user.email}
+                <p className="ml-2 text-green-500">
+                    <b className="text-black">Payment Status:</b> {booking.paymentInfo.status}
                 </p>
               </li>
               <li className="flex items-start">
@@ -74,7 +103,7 @@ const PatientDetails = () => {
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                   </svg>
                 </span>
-                <p className="ml-2"><b>Amount:</b> KSH.{booking.amountPaid}</p>
+                <p className="ml-2"><b className="text-black">Amount:</b> KSH.{booking.amountPaid}</p>
               </li>
               <li className="flex items-start">
                 <span className="h-6 flex items-center sm:h-7">
@@ -82,7 +111,7 @@ const PatientDetails = () => {
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                   </svg>
                 </span>
-                <p className="ml-2"><b>Session Start:</b> {booking.sessionStart}</p>
+                <p className="ml-2"><b className="text-black">Session Start:</b> {booking.sessionStart}</p>
               </li>
               <li className="flex items-start">
                 <span className="h-6 flex items-center sm:h-7">
@@ -90,7 +119,7 @@ const PatientDetails = () => {
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                   </svg>
                 </span>
-                <p className="ml-2"><b>Date:</b> {booking.dateOfBooking}</p>
+                <p className="ml-2"><b className="text-black">Date:</b> {booking.dateOfBooking}</p>
               </li>
             </ul>
           </div>
@@ -107,10 +136,13 @@ const PatientDetails = () => {
             <div className="mt-3 text-center">
             <textarea
                     name="" id="" cols="40" rows="8" className='border border-solid border-gray-300 shadow-lg rounded-md outline-none'
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
 
                 <button 
                     className='small-button font-extrabold'
+                    onClick={handleSubmit}
                 > 
                 Send
                 </button>

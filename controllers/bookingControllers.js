@@ -175,7 +175,10 @@ const getPatientDetails = catchAsyncErrors(async (req, res) => {
             path: 'user',
             select: 'name email avatar'
         })
-
+        .populate({
+            path: 'doctor',
+            select: 'name'
+        })
     res.status(200).json({
         success: true,
         booking

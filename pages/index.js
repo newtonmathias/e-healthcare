@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Services from '../components/Services'
 import TeleFeed from '../components/TeleFeed'
+import Testimonials from '../components/Testimonials'
 import { getDoctors } from '../redux/actions/allDoctorsActions'
 import { wrapper } from '../redux/store'
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Banner />
       <Services />
       <TeleFeed/>
+      <Testimonials/>
       <Doctorvisit />
       <Footer />
     </div>
