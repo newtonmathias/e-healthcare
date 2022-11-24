@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 function Footer() {
     return (
       <footer className="text-center bg-indigo-900 text-white">
@@ -109,7 +111,7 @@ function Footer() {
 
   <div className="text-center p-4 bg-indigo-800">
     © 2022 Copyright:
-    <a className="text-whitehite" href="/">MyHealth</a>
+    <Link className="text-whitehite" href="/">MyHealth</Link>
   </div>
 </footer>
     )

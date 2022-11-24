@@ -18,8 +18,6 @@
     "cloudinary": "^1.32.0",
     "date-fns": "^2.29.3",
     "easyinvoice": "^2.3.3",
-    "mdb-react-ui-kit": "^5.0.0",
-    "mdbreact": "^5.2.0",
     "moment": "^2.29.4",
     "mongoose": "^6.7.0",
     "next": "12.3.1",
