@@ -52,7 +52,7 @@ function DoctorDetails() {
 
     const onClick = (time) => {
         setSessionStart(time)
-        setSessionStop('')
+        setSessionStop('1230')
         
     }
 
