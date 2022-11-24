@@ -192,11 +192,11 @@ function Dashboard() {
                             <tbody>
                                 <tr>
                                     <td className="py-2">TeleVisits</td>
-                                    <td className="text-gray-500">Ksh. {doctor.service==='Telemedicine' ? bookings? numberOfBookings * bookings[0].amountPaid : 0 : 0}</td>  
+                                    <td className="text-gray-500">Ksh. {doctor.service==='Telemedicine' ? bookings? numberOfBookings * doctor.price : 0 : 0}</td>  
                                 </tr>
                                 <tr>
                                     <td className="py-2">In-Person Visits</td>
-                                    <td className="text-gray-500">KSh. {doctor.service==='Appointment' ? bookings? numberOfBookings * bookings[0].amountPaid : 0 : 0}</td> 
+                                    <td className="text-gray-500">KSh. {doctor.service==='Appointment' ? bookings? numberOfBookings * doctor.price: 0 : 0}</td> 
                                 </tr>
                                 <tr>
                                     <td className="py-2">Other</td>
